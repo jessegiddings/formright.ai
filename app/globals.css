@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --cream: #FAF8F4;
+  --paper: #F3F0EA;
+  --sand: #E8E2D5;
+  --warm-gray: #9B9082;
+  --medium: #5C5548;
+  --dark: #1C1917;
+  --ink: #2D2A26;
+  --green: #1A6B47;
+  --green-light: #E8F5EE;
+  --green-mid: #2D8A5E;
+  --amber: #C17B2A;
+  --amber-light: #FDF3E3;
+  --blue: #1E4A7A;
+  --blue-light: #EAF0F8;
+  --red: #B03A2E;
+  --red-light: #FDEAEA;
+  --border: #E0D9CE;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: "DM Sans", sans-serif;
+    background-color: var(--cream);
+    color: var(--ink);
+  }
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
