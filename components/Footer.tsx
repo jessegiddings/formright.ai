@@ -22,7 +22,7 @@ export default function Footer() {
           <div className="text-[11px] font-bold tracking-[0.1em] uppercase text-white/40 mb-3.5">Services</div>
           <ul className="list-none flex flex-col gap-2">
             <li><Link href="/reviews/zenbusiness" className="text-[13px] text-white/50 no-underline hover:text-white transition-colors">ZenBusiness Review</Link></li>
-            <li><Link href="/reviews/northwest-registered-agent" className="text-[13px] text-white/50 no-underline hover:text-white transition-colors">Northwest Review</Link></li>
+            <li><Link href="/reviews/northwest" className="text-[13px] text-white/50 no-underline hover:text-white transition-colors">Northwest Review</Link></li>
             <li><Link href="/reviews/legalzoom" className="text-[13px] text-white/50 no-underline hover:text-white transition-colors">LegalZoom Review</Link></li>
             <li><Link href="/reviews/bizee" className="text-[13px] text-white/50 no-underline hover:text-white transition-colors">Bizee Review</Link></li>
             <li><Link href="/reviews/tailor-brands" className="text-[13px] text-white/50 no-underline hover:text-white transition-colors">Tailor Brands Review</Link></li>
@@ -33,7 +33,7 @@ export default function Footer() {
           <div className="text-[11px] font-bold tracking-[0.1em] uppercase text-white/40 mb-3.5">Guides</div>
           <ul className="list-none flex flex-col gap-2">
             <li><Link href="/guides/how-to-form-llc" className="text-[13px] text-white/50 no-underline hover:text-white transition-colors">How to Form an LLC</Link></li>
-            <li><Link href="/guides/llc-vs-s-corp" className="text-[13px] text-white/50 no-underline hover:text-white transition-colors">LLC vs S-Corp</Link></li>
+            <li><Link href="/guides/llc-vs-scorp" className="text-[13px] text-white/50 no-underline hover:text-white transition-colors">LLC vs S-Corp</Link></li>
             <li><Link href="/guides/llc-state-fees" className="text-[13px] text-white/50 no-underline hover:text-white transition-colors">State Filing Fees</Link></li>
             <li><Link href="/guides/best-state-for-llc" className="text-[13px] text-white/50 no-underline hover:text-white transition-colors">Delaware vs Home State</Link></li>
             <li><Link href="/guides/llc-operating-agreement" className="text-[13px] text-white/50 no-underline hover:text-white transition-colors">Operating Agreement Guide</Link></li>

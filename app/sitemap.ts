@@ -15,7 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Service review pages (Phase 2)
     ...[
       'zenbusiness',
-      'northwest-registered-agent',
+      'northwest',
       'legalzoom',
       'bizee',
       'rocket-lawyer',
@@ -30,7 +30,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Guide pages (Phase 2)
     ...[
       'how-to-form-llc',
-      'llc-vs-s-corp',
+      'llc-vs-scorp',
       'best-state-for-llc',
       'llc-state-fees',
       'what-is-registered-agent',
