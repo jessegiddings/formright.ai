@@ -12,6 +12,18 @@ interface AffiliateLinkProps {
   children: React.ReactNode
 }
 
+function buildTrackedUrl(href: string, service: string): string {
+  try {
+    const url = new URL(href)
+    url.searchParams.set('utm_source', 'formright')
+    url.searchParams.set('utm_medium', 'referral')
+    url.searchParams.set('utm_campaign', service)
+    return url.toString()
+  } catch {
+    return href
+  }
+}
+
 export default function AffiliateLink({
   href,
   service,
@@ -21,6 +33,8 @@ export default function AffiliateLink({
   className,
   children,
 }: AffiliateLinkProps) {
+  const trackedHref = buildTrackedUrl(href, service)
+
   const handleClick = () => {
     // Fire analytics event
     analytics.affiliateClick(service, placement, recommendationMatch)
@@ -40,7 +54,7 @@ export default function AffiliateLink({
 
   return (
     <a
-      href={href}
+      href={trackedHref}
       target="_blank"
       rel="noopener noreferrer"
       onClick={handleClick}

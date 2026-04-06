@@ -24,14 +24,54 @@ export function trackEvent(name: string, properties?: EventProperties) {
   }
 }
 
-// Get UTM params from URL
+// UTM parameter management — capture from URL, persist in sessionStorage
+const UTM_STORAGE_KEY = 'formright_utm'
+
+export function captureUtmParams(): void {
+  if (typeof window === 'undefined') return
+  const params = new URLSearchParams(window.location.search)
+  const utm_source = params.get('utm_source')
+  const utm_campaign = params.get('utm_campaign')
+  const utm_term = params.get('utm_term')
+
+  // Only store if at least one UTM param is present in the URL
+  if (utm_source || utm_campaign || utm_term) {
+    const utm = {
+      utm_source: utm_source || undefined,
+      utm_campaign: utm_campaign || undefined,
+      utm_term: utm_term || undefined,
+    }
+    sessionStorage.setItem(UTM_STORAGE_KEY, JSON.stringify(utm))
+  }
+}
+
 export function getUtmParams(): { utm_source?: string; utm_campaign?: string; utm_term?: string } {
   if (typeof window === 'undefined') return {}
+
+  // First check sessionStorage (persisted from landing page)
+  const stored = sessionStorage.getItem(UTM_STORAGE_KEY)
+  if (stored) {
+    try { return JSON.parse(stored) } catch { /* fall through */ }
+  }
+
+  // Fallback: read from current URL
   const params = new URLSearchParams(window.location.search)
   return {
     utm_source: params.get('utm_source') || undefined,
     utm_campaign: params.get('utm_campaign') || undefined,
     utm_term: params.get('utm_term') || undefined,
+  }
+}
+
+// Google Ads conversion tracking
+export function trackGoogleAdsConversion(recommendation: string) {
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag('event', 'conversion', {
+      send_to: 'AW-CONVERSION_ID/CONVERSION_LABEL',
+      value: 1.0,
+      currency: 'USD',
+      recommendation,
+    })
   }
 }
 

@@ -1,12 +1,19 @@
 'use client'
 
+import { useEffect } from 'react'
 import Script from 'next/script'
+import { captureUtmParams } from '@/lib/analytics'
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID
 const POSTHOG_KEY = process.env.NEXT_PUBLIC_POSTHOG_KEY
 const POSTHOG_HOST = process.env.NEXT_PUBLIC_POSTHOG_HOST || 'https://us.i.posthog.com'
 
 export default function Analytics() {
+  // Capture UTM params from URL on every page load and persist to sessionStorage
+  useEffect(() => {
+    captureUtmParams()
+  }, [])
+
   return (
     <>
       {/* Google Analytics 4 */}

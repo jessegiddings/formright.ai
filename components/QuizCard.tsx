@@ -2,7 +2,7 @@
 
 import { useState, useCallback } from 'react'
 import { QUIZ_QUESTIONS, getRecommendation, type Recommendation } from '@/lib/quizLogic'
-import { analytics, getUtmParams } from '@/lib/analytics'
+import { analytics, getUtmParams, trackGoogleAdsConversion } from '@/lib/analytics'
 
 export default function QuizCard() {
   const [currentStep, setCurrentStep] = useState(1)
@@ -34,6 +34,7 @@ export default function QuizCard() {
     setRecommendation(rec)
     setShowResult(true)
     analytics.quizCompleted(rec.primaryService, answers)
+    trackGoogleAdsConversion(rec.primaryService)
 
     // Save to API with UTM params for ad attribution
     const utm = getUtmParams()
