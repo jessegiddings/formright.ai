@@ -50,3 +50,17 @@ export const AFFILIATE_LINKS = {
 } as const
 
 export type ServiceKey = keyof typeof AFFILIATE_LINKS
+
+// Dev-mode warnings for placeholder affiliate links
+if (process.env.NODE_ENV === 'development') {
+  const placeholders = ['YOUR_AWIN_ID', 'YOUR_ID']
+  for (const [key, link] of Object.entries(AFFILIATE_LINKS)) {
+    if (placeholders.some((p) => link.url.includes(p))) {
+      console.warn(
+        `[FormRight] Placeholder affiliate link: "${key}" (${link.name}) ` +
+        `still has a placeholder tracking ID. ` +
+        `Apply at ${link.network} and update lib/affiliateLinks.ts`
+      )
+    }
+  }
+}

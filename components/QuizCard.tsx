@@ -2,7 +2,7 @@
 
 import { useState, useCallback } from 'react'
 import { QUIZ_QUESTIONS, getRecommendation, type Recommendation } from '@/lib/quizLogic'
-import { analytics } from '@/lib/analytics'
+import { analytics, getUtmParams } from '@/lib/analytics'
 
 export default function QuizCard() {
   const [currentStep, setCurrentStep] = useState(1)
@@ -35,7 +35,8 @@ export default function QuizCard() {
     setShowResult(true)
     analytics.quizCompleted(rec.primaryService, answers)
 
-    // Save to API
+    // Save to API with UTM params for ad attribution
+    const utm = getUtmParams()
     fetch('/api/quiz', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -43,6 +44,10 @@ export default function QuizCard() {
         answers,
         recommendation: rec.primaryService,
         completed: true,
+        utmSource: utm.utm_source,
+        utmCampaign: utm.utm_campaign,
+        utmTerm: utm.utm_term,
+        referrer: typeof document !== 'undefined' ? document.referrer : undefined,
       }),
     }).catch(() => {})
   }, [answers])

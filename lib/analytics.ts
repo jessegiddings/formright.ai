@@ -24,6 +24,17 @@ export function trackEvent(name: string, properties?: EventProperties) {
   }
 }
 
+// Get UTM params from URL
+export function getUtmParams(): { utm_source?: string; utm_campaign?: string; utm_term?: string } {
+  if (typeof window === 'undefined') return {}
+  const params = new URLSearchParams(window.location.search)
+  return {
+    utm_source: params.get('utm_source') || undefined,
+    utm_campaign: params.get('utm_campaign') || undefined,
+    utm_term: params.get('utm_term') || undefined,
+  }
+}
+
 // Pre-defined events for type safety
 export const analytics = {
   quizStarted: () =>
@@ -32,7 +43,8 @@ export const analytics = {
   quizStepCompleted: (step: number, answer: string) =>
     trackEvent('quiz_step_completed', { step, answer }),
 
-  quizCompleted: (recommendation: string, answers: Record<number, string>) =>
+  quizCompleted: (recommendation: string, answers: Record<number, string>) => {
+    const utm = getUtmParams()
     trackEvent('quiz_completed', {
       recommendation,
       answer_1: answers[1],
@@ -40,7 +52,12 @@ export const analytics = {
       answer_3: answers[3],
       answer_4: answers[4],
       answer_5: answers[5],
-    }),
+      answers_summary: `${answers[1]} | ${answers[2]} | ${answers[3]} | ${answers[4]} | ${answers[5]}`,
+      utm_source: utm.utm_source,
+      utm_campaign: utm.utm_campaign,
+      utm_term: utm.utm_term,
+    })
+  },
 
   affiliateClick: (service: string, placement: string, isRecommendation: boolean) =>
     trackEvent('affiliate_click', { service, placement, is_recommendation: isRecommendation }),

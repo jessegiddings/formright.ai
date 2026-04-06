@@ -1,9 +1,47 @@
 import { createClient } from '@supabase/supabase-js'
 
+// Env var validation — logs warnings for missing config
+const REQUIRED_VARS = {
+  NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
+  NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+} as const
+
+const OPTIONAL_VARS = {
+  SUPABASE_SERVICE_KEY: process.env.SUPABASE_SERVICE_KEY,
+  ANTHROPIC_API_KEY: process.env.ANTHROPIC_API_KEY,
+  NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
+} as const
+
+function checkEnvVars() {
+  const missing: string[] = []
+
+  for (const [name, value] of Object.entries(REQUIRED_VARS)) {
+    if (!value) missing.push(name)
+  }
+
+  if (missing.length > 0) {
+    console.warn(
+      `[FormRight] Missing required env vars: ${missing.join(', ')}. ` +
+      'Supabase features (quiz tracking, analytics) will not work. ' +
+      'Add these in Vercel → Settings → Environment Variables.'
+    )
+  }
+
+  for (const [name, value] of Object.entries(OPTIONAL_VARS)) {
+    if (!value) {
+      console.warn(`[FormRight] Missing optional env var: ${name}`)
+    }
+  }
+
+  return missing.length === 0
+}
+
+const isConfigured = checkEnvVars()
+
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || ''
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
 
-export const supabase = supabaseUrl && supabaseAnonKey
+export const supabase = isConfigured
   ? createClient(supabaseUrl, supabaseAnonKey)
   : null
 
