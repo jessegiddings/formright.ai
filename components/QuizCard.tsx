@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from 'react'
 import { QUIZ_QUESTIONS, getRecommendation, type Recommendation } from '@/lib/quizLogic'
+import { analytics } from '@/lib/analytics'
 
 export default function QuizCard() {
   const [currentStep, setCurrentStep] = useState(1)
@@ -13,6 +14,7 @@ export default function QuizCard() {
 
   const selectOption = useCallback((step: number, label: string) => {
     setAnswers((prev) => ({ ...prev, [step]: label }))
+    analytics.quizStepCompleted(step, label)
   }, [])
 
   const nextStep = useCallback(() => {
@@ -31,6 +33,7 @@ export default function QuizCard() {
     const rec = getRecommendation(answers)
     setRecommendation(rec)
     setShowResult(true)
+    analytics.quizCompleted(rec.primaryService, answers)
 
     // Save to API
     fetch('/api/quiz', {

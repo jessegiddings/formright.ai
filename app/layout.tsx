@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Analytics from '@/components/Analytics'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -42,6 +43,7 @@ export default function RootLayout({
       </head>
       <body className="font-sans bg-cream text-ink overflow-x-hidden">
         {children}
+        <Analytics />
       </body>
     </html>
   )

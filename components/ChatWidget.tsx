@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
+import { analytics } from '@/lib/analytics'
 
 interface Message {
   role: 'user' | 'assistant'
@@ -32,6 +33,7 @@ export default function ChatWidget() {
     setMessages(newMessages)
     setInput('')
     setIsLoading(true)
+    analytics.chatMessageSent(newMessages.filter(m => m.role === 'user').length)
 
     try {
       const res = await fetch('/api/chat', {
@@ -137,7 +139,7 @@ export default function ChatWidget() {
       {/* Toggle button */}
       <button
         type="button"
-        onClick={() => { setIsOpen(!isOpen); setShowBadge(false); }}
+        onClick={() => { if (!isOpen) analytics.chatOpened(); setIsOpen(!isOpen); setShowBadge(false); }}
         className="w-[52px] h-[52px] bg-green border-none rounded-full cursor-pointer flex items-center justify-center shadow-[0_4px_20px_rgba(26,107,71,0.35)] hover:bg-green-mid hover:scale-[1.06] transition-all relative"
       >
         <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
