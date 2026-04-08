@@ -16,9 +16,9 @@ export const AFFILIATE_LINKS = {
     color: '#FDF3E3',
   },
   legalzoom: {
-    url: 'https://www.legalzoom.com/?ref=YOUR_ID',
+    url: 'https://impact.legalzoom.com/c/7173053/3141460/26746',
     commission: 'Varies',
-    network: 'CJ Affiliate',
+    network: 'Impact',
     name: 'LegalZoom',
     icon: '⚖️',
     color: '#EAF0F8',
