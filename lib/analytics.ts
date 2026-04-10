@@ -67,7 +67,7 @@ export function getUtmParams(): { utm_source?: string; utm_campaign?: string; ut
 export function trackGoogleAdsConversion(recommendation: string) {
   if (typeof window !== 'undefined' && window.gtag) {
     window.gtag('event', 'conversion', {
-      send_to: 'AW-17671517581/ldDtCPzGgpkcEI3rt-pB',
+      send_to: 'AW-18080062369/h9VXCNTky5kcEKG3n61D',
       value: 1.0,
       currency: 'USD',
       recommendation,
