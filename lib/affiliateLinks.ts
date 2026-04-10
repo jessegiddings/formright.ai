@@ -8,9 +8,9 @@ export const AFFILIATE_LINKS = {
     color: '#EAF5EE',
   },
   northwest: {
-    url: 'https://www.northwestregisteredagent.com/?ref=YOUR_ID',
+    url: 'https://www.awin1.com/cread.php?awinmid=66946&awinaffid=2848813&ued=https%3A%2F%2Fwww.northwestregisteredagent.com%2F',
     commission: 'Varies',
-    network: 'Direct',
+    network: 'Awin',
     name: 'Northwest Registered Agent',
     icon: '🛡️',
     color: '#FDF3E3',
