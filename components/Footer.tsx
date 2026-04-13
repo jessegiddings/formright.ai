@@ -43,11 +43,12 @@ export default function Footer() {
         <div>
           <div className="text-[11px] font-bold tracking-[0.1em] uppercase text-white/40 mb-3.5">Company</div>
           <ul className="list-none flex flex-col gap-2">
-            <li><a href="#" className="text-[13px] text-white/50 no-underline hover:text-white transition-colors">About</a></li>
-            <li><a href="#" className="text-[13px] text-white/50 no-underline hover:text-white transition-colors">How We Make Money</a></li>
-            <li><a href="#" className="text-[13px] text-white/50 no-underline hover:text-white transition-colors">Editorial Standards</a></li>
-            <li><a href="#" className="text-[13px] text-white/50 no-underline hover:text-white transition-colors">Privacy Policy</a></li>
-            <li><a href="#" className="text-[13px] text-white/50 no-underline hover:text-white transition-colors">Contact</a></li>
+            <li><Link href="/about" className="text-[13px] text-white/50 no-underline hover:text-white transition-colors">About</Link></li>
+            <li><Link href="/how-we-make-money" className="text-[13px] text-white/50 no-underline hover:text-white transition-colors">How We Make Money</Link></li>
+            <li><Link href="/editorial-standards" className="text-[13px] text-white/50 no-underline hover:text-white transition-colors">Editorial Standards</Link></li>
+            <li><Link href="/privacy" className="text-[13px] text-white/50 no-underline hover:text-white transition-colors">Privacy Policy</Link></li>
+            <li><Link href="/terms" className="text-[13px] text-white/50 no-underline hover:text-white transition-colors">Terms of Use</Link></li>
+            <li><Link href="/contact" className="text-[13px] text-white/50 no-underline hover:text-white transition-colors">Contact</Link></li>
           </ul>
         </div>
       </div>
@@ -55,7 +56,7 @@ export default function Footer() {
       <div className="max-w-[1100px] mx-auto pt-6 border-t border-white/[0.08] flex flex-col md:flex-row items-center justify-between gap-3 flex-wrap">
         <div className="text-[12px]">&copy; 2025 FormRight (formright.ai). All rights reserved.</div>
         <div className="text-[11px] max-w-[500px] leading-[1.5] opacity-60">
-          Affiliate disclosure: FormRight earns commissions when you sign up through our links, at no extra cost to you. This doesn&apos;t influence our recommendations. See our editorial standards for details.
+          Affiliate disclosure: FormRight earns commissions when you sign up through our links, at no extra cost to you. This doesn&apos;t influence our recommendations. See our <Link href="/editorial-standards" className="underline hover:text-white/90">editorial standards</Link> for details.
         </div>
       </div>
     </footer>

@@ -43,5 +43,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly' as const,
       priority: 0.7,
     })),
+
+    // Trust / company pages
+    ...[
+      'about',
+      'how-we-make-money',
+      'editorial-standards',
+      'privacy',
+      'terms',
+      'contact',
+    ].map((page) => ({
+      url: `${baseUrl}/${page}`,
+      lastModified: new Date(),
+      changeFrequency: 'yearly' as const,
+      priority: 0.4,
+    })),
   ]
 }
