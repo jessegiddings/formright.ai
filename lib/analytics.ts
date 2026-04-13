@@ -63,7 +63,7 @@ export function getUtmParams(): { utm_source?: string; utm_campaign?: string; ut
   }
 }
 
-// Google Ads conversion tracking
+// Google Ads conversion tracking — quiz completion
 export function trackGoogleAdsConversion(recommendation: string) {
   if (typeof window !== 'undefined' && window.gtag) {
     window.gtag('event', 'conversion', {
@@ -73,6 +73,23 @@ export function trackGoogleAdsConversion(recommendation: string) {
       recommendation,
     })
   }
+}
+
+// Google Ads conversion tracking — affiliate click.
+// send_to is env-var controlled so you can plug in the real conversion
+// label from Google Ads without a code deploy. Until NEXT_PUBLIC_GADS_AFFILIATE_CONVERSION
+// is set to a real value (e.g. "AW-18080062369/XXXXXXXX"), this function
+// is a no-op and will NOT pollute the Ads account with fake data.
+export function trackAffiliateClickConversion(service: string, value = 50) {
+  const sendTo = process.env.NEXT_PUBLIC_GADS_AFFILIATE_CONVERSION
+  if (!sendTo) return // silent no-op until configured
+  if (typeof window === 'undefined' || !window.gtag) return
+  window.gtag('event', 'conversion', {
+    send_to: sendTo,
+    value,
+    currency: 'USD',
+    provider: service,
+  })
 }
 
 // Pre-defined events for type safety

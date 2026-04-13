@@ -3,6 +3,7 @@
 import { useState, useCallback } from 'react'
 import { QUIZ_QUESTIONS, getRecommendation, type Recommendation } from '@/lib/quizLogic'
 import { analytics, getUtmParams, trackGoogleAdsConversion } from '@/lib/analytics'
+import AffiliateLink from '@/components/AffiliateLink'
 
 export default function QuizCard() {
   const [currentStep, setCurrentStep] = useState(1)
@@ -150,10 +151,11 @@ export default function QuizCard() {
 
             <div className="flex flex-col gap-3 mb-6">
               {/* Primary pick */}
-              <a
+              <AffiliateLink
                 href={recommendation.primaryUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+                service={recommendation.primaryKey}
+                placement="result_primary_card"
+                recommendationMatch
                 className="bg-white border-[1.5px] border-green rounded-[10px] px-5 py-4 flex items-center gap-4 no-underline hover:shadow-[0_4px_16px_var(--shadow)] hover:-translate-y-px transition-all relative"
               >
                 <div className="absolute -top-2 left-4 bg-green text-white text-[10px] font-bold tracking-[0.06em] uppercase px-2 py-0.5 rounded-[10px]">
@@ -170,13 +172,13 @@ export default function QuizCard() {
                   <div className="text-[12px] text-warm-gray">Best match for your needs</div>
                 </div>
                 <span className="text-warm-gray text-base flex-shrink-0">→</span>
-              </a>
+              </AffiliateLink>
 
               {/* Alternative pick */}
-              <a
+              <AffiliateLink
                 href={recommendation.alternativeUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+                service={recommendation.alternativeKey}
+                placement="result_alternative_card"
                 className="bg-white border-[1.5px] border-border rounded-[10px] px-5 py-4 flex items-center gap-4 no-underline hover:border-green hover:shadow-[0_4px_16px_var(--shadow)] hover:-translate-y-px transition-all"
               >
                 <div
@@ -190,17 +192,18 @@ export default function QuizCard() {
                   <div className="text-[12px] text-warm-gray">{recommendation.alternativeDesc}</div>
                 </div>
                 <span className="text-warm-gray text-base flex-shrink-0">→</span>
-              </a>
+              </AffiliateLink>
             </div>
 
-            <a
+            <AffiliateLink
               href={recommendation.primaryUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+              service={recommendation.primaryKey}
+              placement="result_cta"
+              recommendationMatch
               className="w-full bg-green text-white border-none font-sans font-semibold text-[15px] py-3.5 rounded-[10px] cursor-pointer flex items-center justify-center gap-2 no-underline hover:bg-green-mid transition-all mb-3"
             >
               Get Started with {recommendation.primaryService} →
-            </a>
+            </AffiliateLink>
 
             <p className="text-[11px] text-warm-gray text-center mb-3 leading-[1.5]">
               Note: FormRight earns a commission if you sign up through our links, at no extra cost to you.

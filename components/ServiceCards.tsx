@@ -1,4 +1,5 @@
 import { AFFILIATE_LINKS } from '@/lib/affiliateLinks'
+import AffiliateLink from '@/components/AffiliateLink'
 
 const services = [
   {
@@ -152,14 +153,14 @@ export default function ServiceCards() {
                   </div>
                   <div className="text-[11px] text-warm-gray">+ your state&apos;s filing fee</div>
                 </div>
-                <a
+                <AffiliateLink
                   href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  service={s.key}
+                  placement="service_card"
                   className="bg-green text-white border-none font-sans text-[12px] font-semibold px-4 py-2 rounded-[20px] no-underline hover:bg-green-mid transition-colors"
                 >
                   Visit Site →
-                </a>
+                </AffiliateLink>
               </div>
             </div>
           )

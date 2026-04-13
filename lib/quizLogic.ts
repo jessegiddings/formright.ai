@@ -1,4 +1,4 @@
-import { AFFILIATE_LINKS } from './affiliateLinks'
+import { AFFILIATE_LINKS, type ServiceKey } from './affiliateLinks'
 
 export interface QuizState {
   currentStep: number
@@ -9,6 +9,7 @@ export interface QuizState {
 
 export interface Recommendation {
   primaryService: string
+  primaryKey: ServiceKey
   primaryUrl: string
   primaryIcon: string
   primaryColor: string
@@ -16,6 +17,7 @@ export interface Recommendation {
   subtitle: string
   reasoning: string
   alternativeService: string
+  alternativeKey: ServiceKey
   alternativeUrl: string
   alternativeIcon: string
   alternativeColor: string
@@ -87,6 +89,7 @@ export function getRecommendation(answers: Record<number, string>): Recommendati
   if (priority.includes('Privacy') || priority.includes('privacy')) {
     return {
       primaryService: 'Northwest Registered Agent',
+      primaryKey: 'northwest',
       primaryUrl: AFFILIATE_LINKS.northwest.url,
       primaryIcon: '🛡️',
       primaryColor: '#FDF3E3',
@@ -95,6 +98,7 @@ export function getRecommendation(answers: Record<number, string>): Recommendati
       reasoning:
         "You flagged privacy as your top priority. Northwest is the only service that puts THEIR address on public filings instead of yours — keeping your home address off public databases. They're also the only major service with a strict no-data-selling policy. At $39 + state fees, they're worth every cent for this protection.",
       alternativeService: 'ZenBusiness',
+      alternativeKey: 'zenbusiness',
       alternativeUrl: AFFILIATE_LINKS.zenbusiness.url,
       alternativeIcon: '🏢',
       alternativeColor: '#EAF5EE',
@@ -105,6 +109,7 @@ export function getRecommendation(answers: Record<number, string>): Recommendati
   if (legal.includes('lawyers') || priority.includes('legal') || priority.includes('Legal')) {
     return {
       primaryService: 'LegalZoom',
+      primaryKey: 'legalzoom',
       primaryUrl: AFFILIATE_LINKS.legalzoom.url,
       primaryIcon: '⚖️',
       primaryColor: '#EAF0F8',
@@ -113,6 +118,7 @@ export function getRecommendation(answers: Record<number, string>): Recommendati
       reasoning:
         'You indicated that ongoing legal guidance matters. LegalZoom is the most established name in online legal services with attorney plans starting at $49/month. Rocket Lawyer bundles attorney consultations into their formation package. Either is a strong choice — LegalZoom for breadth, Rocket Lawyer for convenience.',
       alternativeService: 'Rocket Lawyer',
+      alternativeKey: 'rocketlawyer',
       alternativeUrl: AFFILIATE_LINKS.rocketlawyer.url,
       alternativeIcon: '🔑',
       alternativeColor: '#F8EAF5',
@@ -123,6 +129,7 @@ export function getRecommendation(answers: Record<number, string>): Recommendati
   if (priority.includes('Speed') || priority.includes('fast')) {
     return {
       primaryService: 'Bizee',
+      primaryKey: 'bizee',
       primaryUrl: AFFILIATE_LINKS.bizee.url,
       primaryIcon: '🚀',
       primaryColor: '#EAF0F8',
@@ -131,6 +138,7 @@ export function getRecommendation(answers: Record<number, string>): Recommendati
       reasoning:
         "Speed is your priority. Bizee (formerly Incfile) typically processes filings in 1–2 business days and is free to use (+ state fees). They also include a free year of registered agent service. For a fast, no-fuss filing that doesn't cost anything extra, Bizee is the move.",
       alternativeService: 'ZenBusiness',
+      alternativeKey: 'zenbusiness',
       alternativeUrl: AFFILIATE_LINKS.zenbusiness.url,
       alternativeIcon: '🏢',
       alternativeColor: '#EAF5EE',
@@ -141,6 +149,7 @@ export function getRecommendation(answers: Record<number, string>): Recommendati
   if (budget.includes('$0') || budget.includes('just state')) {
     return {
       primaryService: 'ZenBusiness',
+      primaryKey: 'zenbusiness',
       primaryUrl: AFFILIATE_LINKS.zenbusiness.url,
       primaryIcon: '🏢',
       primaryColor: '#EAF5EE',
@@ -149,6 +158,7 @@ export function getRecommendation(answers: Record<number, string>): Recommendati
       reasoning:
         "You want to spend nothing on the service itself — just the mandatory state fees. ZenBusiness's free Starter plan files your LLC, includes a year of registered agent service, and has a 4.8★ rating from 28,000+ customers. It's the best free option by a wide margin.",
       alternativeService: 'Bizee',
+      alternativeKey: 'bizee',
       alternativeUrl: AFFILIATE_LINKS.bizee.url,
       alternativeIcon: '🚀',
       alternativeColor: '#EAF0F8',
@@ -159,6 +169,7 @@ export function getRecommendation(answers: Record<number, string>): Recommendati
   // Default
   return {
     primaryService: 'ZenBusiness',
+    primaryKey: 'zenbusiness',
     primaryUrl: AFFILIATE_LINKS.zenbusiness.url,
     primaryIcon: '🏢',
     primaryColor: '#EAF5EE',
@@ -167,6 +178,7 @@ export function getRecommendation(answers: Record<number, string>): Recommendati
     reasoning:
       'Based on your answers, ZenBusiness Pro is the strongest fit. At $199 + state fees, it includes rush filing (same-day processing), a year of registered agent service, an operating agreement, and compliance alerts. It consistently outranks competitors on price, speed, and customer satisfaction. 850,000+ businesses have used it.',
     alternativeService: 'Bizee',
+    alternativeKey: 'bizee',
     alternativeUrl: AFFILIATE_LINKS.bizee.url,
     alternativeIcon: '🚀',
     alternativeColor: '#EAF0F8',

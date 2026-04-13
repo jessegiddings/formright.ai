@@ -1,5 +1,6 @@
 import { AFFILIATE_LINKS, type ServiceKey } from '@/lib/affiliateLinks'
 import CTASection from '@/components/CTASection'
+import AffiliateLink from '@/components/AffiliateLink'
 import Link from 'next/link'
 
 interface RelatedGuide {
@@ -161,14 +162,14 @@ export default function ReviewLayout({
                       {ourRating} &mdash; Our rating
                     </div>
                   </div>
-                  <a
+                  <AffiliateLink
                     href={affiliate.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    service={serviceKey}
+                    placement="review_sidebar"
                     className="block w-full bg-green text-white text-center font-semibold text-sm py-3 rounded-lg no-underline hover:bg-green-mid transition-colors mb-3"
                   >
                     Visit {serviceName} &rarr;
-                  </a>
+                  </AffiliateLink>
                   <Link
                     href="/#quiz"
                     className="block text-center text-[13px] text-warm-gray hover:text-green transition-colors no-underline"

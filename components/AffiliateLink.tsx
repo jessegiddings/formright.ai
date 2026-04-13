@@ -1,6 +1,6 @@
 'use client'
 
-import { analytics } from '@/lib/analytics'
+import { analytics, trackAffiliateClickConversion } from '@/lib/analytics'
 
 interface AffiliateLinkProps {
   href: string
@@ -36,8 +36,11 @@ export default function AffiliateLink({
   const trackedHref = buildTrackedUrl(href, service)
 
   const handleClick = () => {
-    // Fire analytics event
+    // Fire analytics event (GA4 + PostHog)
     analytics.affiliateClick(service, placement, recommendationMatch)
+
+    // Fire Google Ads affiliate-click conversion (no-op until env var is set)
+    trackAffiliateClickConversion(service)
 
     // Log to Supabase
     fetch('/api/clicks', {
