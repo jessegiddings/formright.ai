@@ -32,7 +32,7 @@ export const AFFILIATE_LINKS = {
   bizee: {
     url:
       process.env.NEXT_PUBLIC_BIZEE_LINK ||
-      'https://www.bizee.com/',
+      'https://www.awin1.com/cread.php?awinmid=88819&awinaffid=2848813&ued=https%3A%2F%2Fwww.bizee.com%2F',
     commission: 'Varies',
     network: 'Impact',
     name: 'Bizee',
