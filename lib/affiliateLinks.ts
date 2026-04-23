@@ -52,7 +52,7 @@ export const AFFILIATE_LINKS = {
   tailorbrands: {
     url:
       process.env.NEXT_PUBLIC_TAILORBRANDS_LINK ||
-      'https://www.tailorbrands.com/',
+      'https://www.awin1.com/cread.php?awinmid=19657&awinaffid=2848813&ued=https%3A%2F%2Fwww.tailorbrands.com%2Fllc-states-aff',
     commission: 'Varies',
     network: 'Impact',
     name: 'Tailor Brands',
